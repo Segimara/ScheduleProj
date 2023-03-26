@@ -9,7 +9,7 @@ namespace ToDoTask.Identity
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
-                new ApiScope("ShopWebApi", "Shop Web Api")
+                new ApiScope("ScheduleWebApi", "Schedule Web Api")
             };
         public static IEnumerable<IdentityResource> IdentityResources =
             new List<IdentityResource>
@@ -20,9 +20,9 @@ namespace ToDoTask.Identity
         public static IEnumerable<ApiResource> ApiResources =>
             new List<ApiResource>
             {
-                new ApiResource("ShopWebApi", "Web Api", new[]{JwtClaimTypes.Name, JwtClaimTypes.Role, JwtClaimTypes.Gender})
+                new ApiResource("ScheduleWebApi", "Web Api", new[]{JwtClaimTypes.Name, JwtClaimTypes.Role, JwtClaimTypes.Gender})
                 {
-                    Scopes = { "ShopWebApi" }
+                    Scopes = { "ScheduleWebApi" }
                 }
             };
         public static IEnumerable<Client> Clients =>
@@ -30,8 +30,8 @@ namespace ToDoTask.Identity
             {
                 new Client
                 {
-                    ClientId = "ShopWebApi-swagger",
-                    ClientName = "ShopWebApi Swagger",
+                    ClientId = "ScheduleWebApi-swagger",
+                    ClientName = "ScheduleWebApi Swagger",
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireClientSecret = false,
                     RequirePkce = true,
@@ -47,7 +47,7 @@ namespace ToDoTask.Identity
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "ShopWebApi"
+                        "ScheduleWebApi"
                     },
                     AllowAccessTokensViaBrowser = true
                 },

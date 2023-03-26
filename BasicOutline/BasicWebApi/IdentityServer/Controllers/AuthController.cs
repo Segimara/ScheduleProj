@@ -1,6 +1,5 @@
 ﻿using IdentityServer.Models;
 using Microsoft.AspNetCore.Mvc;
-using ToDoTask.Identity.Models;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 

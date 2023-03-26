@@ -1,0 +1,33 @@
+﻿@model RegisterViewModel
+
+<form asp-controller = "Auth" asp-action = "Register" method = "post" class = "form form-register">
+		<input type = "hidden" asp-for = "ReturnUrl"/>
+		<div class = "main-label">Registration</div>
+		<div class = "input-container align-self-center">
+			<label class="form-label align-self-center">Username</label>
+			<input asp-for = "Username" class = "form-input"/>
+			<span asp-validation-for="Username" class="form-validation"></span>
+		</div>
+		<div class = "d-flex flex-row flex-wrap align-self-center justify-content-center">
+			<div class = "input-container">
+				<label class="form-label align-self-center">Password</label>
+				<input asp-for = "Password" class = "form-input"/>
+				<span asp-validation-for="Password" class="form-validation"></span>
+			</div>
+			<div class = "input-container">
+				<label class="form-label align-self-center">Confirm Password</label>
+				<input asp-for = "ConfirmPassword" class = "form-input"/>
+				<span asp-validation-for="ConfirmPassword" class="form-validation"></span>
+			</div>
+		</div>
+		<div class = "input-container flex-row justify-content-evenly flex-wrap">
+			<button type = "submit"  class="form-btn form-submit-btn-warning">Sing up</button>
+			<a asp-controller ="Auth" asp-action = "Login" asp-route-returnUrl = "@Model.ReturnUrl" class = "inverse-link-warning form-btn">Login</a>
+		</div>
+		
+</form>
+
+@{
+    Layout = "_Layout";
+}
+

@@ -1,6 +1,5 @@
 using BasicWebApi.Data;
 using System.Configuration;
-
 namespace BasicWebApi
 {
     public class Program

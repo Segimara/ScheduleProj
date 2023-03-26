@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoTask.Identity.Models
+namespace IdentityServer.Models
 {
     public class LoginViewModel
     {
