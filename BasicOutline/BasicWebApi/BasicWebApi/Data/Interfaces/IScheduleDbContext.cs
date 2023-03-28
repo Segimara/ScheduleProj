@@ -7,6 +7,7 @@ namespace BasicWebApi.Data.Interfaces
     {
         public DbSet<ImageModel> Images { get; set; }
         public DbSet<EventModel> Events { get; set; }
+        public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
     }
 }

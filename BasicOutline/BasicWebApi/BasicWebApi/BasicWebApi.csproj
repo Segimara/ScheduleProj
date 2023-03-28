@@ -9,7 +9,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Core\App\Services\**" />
+    <Content Remove="Core\App\Services\**" />
+    <EmbeddedResource Remove="Core\App\Services\**" />
+    <None Remove="Core\App\Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -25,7 +38,9 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Core\App\Services\" />
+    <Folder Include="Core\app\Event\Commands\Delete\" />
+    <Folder Include="Core\App\Event\Commands\Update\" />
+    <Folder Include="Core\App\Event\Queries\" />
   </ItemGroup>
 
 </Project>
