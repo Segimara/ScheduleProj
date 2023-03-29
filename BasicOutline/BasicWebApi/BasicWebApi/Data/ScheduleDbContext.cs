@@ -16,7 +16,7 @@ namespace BasicWebApi.Data
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<ImageModel>().HasOne<EventModel>(e => e.Event).WithMany().HasForeignKey(e => e.EventId);
-			modelBuilder.Entity<EventModel>().HasMany<ImageModel>(e => e.Images).WithOne(e => e.Event);
+			//modelBuilder.Entity<EventModel>().HasMany<ImageModel>(e => e.Images).WithOne(e => e.Event);
 		}
 	}
 }

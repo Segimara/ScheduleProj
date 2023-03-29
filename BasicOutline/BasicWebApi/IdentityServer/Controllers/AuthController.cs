@@ -92,18 +92,6 @@ namespace IdentityServer.Controllers
             return Redirect(logoutRequest.PostLogoutRedirectUri);
         }
 
-        public async Task<IActionResult> Error(string errorId)
-        {
-            var vm = new ErrorViewModel();
-
-            // retrieve error details from identityserver
-            var message = await _interactionService.GetErrorContextAsync(errorId);
-            if (message != null)
-            {
-                vm.Error = message;
-            }
-            ViewBag.VM = vm;
-            return View("Error", vm);
-        }
+        
     }
 }

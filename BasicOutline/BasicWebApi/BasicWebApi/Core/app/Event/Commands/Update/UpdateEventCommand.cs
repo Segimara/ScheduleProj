@@ -1,7 +1,7 @@
 ﻿using BasicWebApi.Core.Domain;
 using MediatR;
 
-namespace BasicWebApi.Core.App.Event.Commands.Delete
+namespace BasicWebApi.Core.App.Event.Commands.Update
 {
 	public class UpdateEventCommand : IRequest<EventModel>
 	{

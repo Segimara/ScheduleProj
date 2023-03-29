@@ -37,6 +37,7 @@ namespace BasicWebApi
 				});
 			builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>,
 				SwaggerCFG>();
+			builder.Services.AddSwaggerGen();
 			builder.Services.AddCors(opt =>
 			{
 				opt.AddPolicy("AllowAll", policy =>

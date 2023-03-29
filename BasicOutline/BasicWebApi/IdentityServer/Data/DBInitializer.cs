@@ -14,8 +14,8 @@ namespace IdentityServer.Data
     {
         public static void Initialize(AuthDBContext authContext, ConfigurationDBContext configContext, IServiceProvider serviceProvider)
         {
-            AuthContextInit(authContext, serviceProvider);
             ConfigurationContextInit(configContext);
+            AuthContextInit(authContext, serviceProvider);
         }
 
         private static void AuthContextInit(AuthDBContext context, IServiceProvider serviceProvider)

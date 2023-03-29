@@ -1,6 +1,7 @@
 ﻿using BasicWebApi.Core.App.Common.Exceptions;
 using BasicWebApi.Data.Interfaces;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BasicWebApi.Core.App.Event.Commands.Delete
@@ -14,7 +15,7 @@ namespace BasicWebApi.Core.App.Event.Commands.Delete
 		}
 		public async Task<Guid> Handle(DeleteEventCommand request, CancellationToken cancellationToken)
 		{
-			var _event = _dbContext.Events.FirstOrDefault(x => x.Id == request.Id && x.UserId == request.UserId);
+			var _event = await _dbContext.Events.FirstOrDefaultAsync(x => x.Id == request.Id && x.UserId == request.UserId, cancellationToken);
 			if (_event == null)
 			{
 				throw new NotFoundException(nameof(_event), request.Id);

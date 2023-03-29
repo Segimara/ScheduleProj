@@ -37,10 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Core\app\Event\Commands\Delete\" />
     <Folder Include="Core\App\Event\Commands\Update\" />
-    <Folder Include="Core\App\Event\Queries\" />
   </ItemGroup>
 
 </Project>

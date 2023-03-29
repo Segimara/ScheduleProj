@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace BasicWebApi.Core.App.Event.Commands.Delete
+namespace BasicWebApi.Core.App.Event.Commands.Update
 {
 	public class UpdateEventCommandValidator : AbstractValidator<UpdateEventCommand>
 	{
