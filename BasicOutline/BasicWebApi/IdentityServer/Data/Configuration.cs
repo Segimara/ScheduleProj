@@ -15,7 +15,7 @@ namespace ToDoTask.Identity
             new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
+                new IdentityResources.Profile(),
             };
         public static IEnumerable<ApiResource> ApiResources =>
             new List<ApiResource>
@@ -37,7 +37,7 @@ namespace ToDoTask.Identity
                     RequirePkce = true,
                     RedirectUris =
                     {
-                        "https://localhost:7001/swagger/oauth2-redirect.html"
+                        "https://localhost:7001/oauth2-redirect.html"
                     },
                     AllowedCorsOrigins =
                     {

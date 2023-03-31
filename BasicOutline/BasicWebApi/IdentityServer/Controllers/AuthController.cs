@@ -72,6 +72,7 @@ namespace IdentityServer.Controllers
             }
             var user = new AppUser
             {
+                UserName = viewModel.Username,
                 DisplayedUsername = viewModel.DisplayedUsername,
             };
             var result = await _userManager.CreateAsync(user, viewModel.Password);

@@ -11,8 +11,9 @@ using BasicWebApi.Controllers.Dtos;
 
 namespace BasicWebApi.Controllers
 {
-    [Authorize]
-	public class ScheduleController : BaseController
+	[Authorize]
+    [Produces("application/json")]
+    public class ScheduleController : BaseController
 	{
 		IMapper _mapper;
 		public ScheduleController(IMapper mapper)

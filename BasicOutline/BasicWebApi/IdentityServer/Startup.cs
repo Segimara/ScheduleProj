@@ -2,6 +2,7 @@
 using IdentityServer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Logging;
 
 namespace IdentityServer
 {
@@ -51,8 +52,8 @@ namespace IdentityServer
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-
-			}
+                IdentityModelEventSource.ShowPII = true;
+            }
 			else
 			{
 				app.UseExceptionHandler("/Home/Error");

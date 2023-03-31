@@ -5,9 +5,11 @@ using BasicWebApi.Data.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Logging;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Configuration;
 using System.Reflection;
+using static System.Net.WebRequestMethods;
 
 namespace BasicWebApi
 {
@@ -24,19 +26,17 @@ namespace BasicWebApi
 				cfg.AddProfile(new AssemblyMappingProfile(typeof(IScheduleDbContext).Assembly));
 			});
             builder.Services.AddApplication();
-			builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
             builder.Services.AddPersistence(builder.Configuration);
-
 			builder.Services.AddAuthentication("Bearer")
 				.AddIdentityServerAuthentication("Bearer", opt =>
-				{
-					opt.ApiName = "ScheduleWebApi";
-					opt.Authority = Environment.GetEnvironmentVariable("ASPNETCORE_URLS").Split(";")[0];
-				});
+                {
+                    opt.ApiName = "ScheduleWebApi";
+					opt.SaveToken = true;
+					opt.Authority = "https://localhost:7000";
+                });
 			builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>,
 				SwaggerCFG>();
+			builder.Services.AddControllers();
 			builder.Services.AddSwaggerGen();
 			builder.Services.AddCors(opt =>
 			{
@@ -47,6 +47,9 @@ namespace BasicWebApi
 					policy.AllowAnyOrigin();
 				});
 			});
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 			using (var scope = app.Services.CreateScope())
@@ -65,22 +68,29 @@ namespace BasicWebApi
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())
             {
-                app.UseSwagger();
+                app.UseDeveloperExceptionPage();
+                
+            }
+            IdentityModelEventSource.ShowPII = true;
+            app.UseSwagger();
                 app.UseSwaggerUI(config =>
 				{
 					config.OAuthClientId("ScheduleWebApi-swagger");
 					config.OAuthAppName("ScheduleWebApi Swagger");
 					config.OAuthUsePkce();
 				});
-            }
+            app.UseHsts();
+            app.UseHttpsRedirection();	
+            app.UseRouting();
 
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
 			app.UseAuthentication();
-			app.UseCors("AllowAll");
+            app.UseAuthorization();
+            app.UseCors("AllowAll");
 
-            app.MapControllers();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.Run();
         }
