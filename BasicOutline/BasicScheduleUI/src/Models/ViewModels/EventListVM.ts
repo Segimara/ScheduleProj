@@ -1,0 +1,3 @@
+interface EventListVM {
+  listDTOs: EventListDTO[];
+}
