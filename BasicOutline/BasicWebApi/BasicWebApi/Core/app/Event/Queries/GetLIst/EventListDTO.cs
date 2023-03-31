@@ -17,7 +17,9 @@ namespace BasicWebApi.Core.App.Event.Queries.GetLIst
 
 		public void Mapping(Profile profile)
 		{
-			profile.CreateMap<EventListDTO, EventModel>();
+			profile.CreateMap<EventModel, EventListDTO>()
+				.ForMember(x => x.Description, opt =>
+				opt.MapFrom(x => x.Description.Take(255)));
 		}
 	}
 }
