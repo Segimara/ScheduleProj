@@ -1,41 +1,24 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="toggleDrawer()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>My App</span>
-</mat-toolbar>
-<mat-drawer-container>
-  <mat-drawer-content>
-    
-    <p>Content</p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint id quis nam et facere illo aut non! Est pariatur voluptatem obcaecati saepe facere? Temporibus quis quibusdam, sit commodi veritatis maxime!
-  </mat-drawer-content>
-
-
-  <mat-drawer #drawer mode="side">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/home">Home</a>
-      <a mat-list-item routerLink="/about">About</a>
-      <a mat-list-item routerLink="/contact">Contact</a>
-    </mat-nav-list>
-  </mat-drawer>
-</mat-drawer-container>
+<div class="content">
+  <mat-toolbar id="appToolbar" color="primary">
+    <button mat-icon-button class="example-icon" (click)="toggleDrawer()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+  </mat-toolbar>
+  <mat-drawer-container class="drawer-container">
+    <mat-drawer-content class="drawer-content">
+      <app-calendar-tabs class="calendar-tabs"></app-calendar-tabs>
+      <!--todo colapse on 1050px to right drawer-->
+      <!--fill component details-menu-->
+      <app-details-menu class="details-menu"></app-details-menu>
+    </mat-drawer-content>
+  
+    <mat-drawer #drawer mode="side">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/home">Home</a>
+        <a mat-list-item routerLink="/about">About</a>
+        <a mat-list-item routerLink="/contact">Contact</a>
+      </mat-nav-list>
+    </mat-drawer>
+  </mat-drawer-container>
+</div>
