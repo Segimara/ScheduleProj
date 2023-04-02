@@ -2,3 +2,66 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.markdown-container, :host ::ng-deep{
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 20px;
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    margin-bottom: 15px;
+  }
+  
+  ul {
+    list-style-type: disc;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    
+    li {
+      margin-bottom: 5px;
+    }
+  }
+  
+  ol {
+    list-style-type: decimal;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    
+    li {
+      margin-bottom: 5px;
+    }
+  }
+  
+  blockquote {
+    margin: 0 0 15px;
+    padding: 15px;
+    border-left: 5px solid #eee;
+    background-color: #f9f9f9;
+    font-style: italic;
+  }
+  
+  code {
+    font-family: monospace;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 2px 5px;
+  }
+  
+  a {
+    color: #337ab7;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

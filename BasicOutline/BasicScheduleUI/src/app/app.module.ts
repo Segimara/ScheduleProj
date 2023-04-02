@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CalendarTabsComponent } from './calendar-tabs/calendar-tabs.component';
 import { DetailsMenuComponent } from './details-menu/details-menu.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DetailsMenuComponent } from './details-menu/details-menu.component';
     DetailsMenuComponent,
   ],
   imports: [
+    MarkdownModule.forRoot(),
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -29,7 +31,7 @@ import { DetailsMenuComponent } from './details-menu/details-menu.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
