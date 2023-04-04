@@ -10,8 +10,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { CalendarTabsComponent } from './calendar-tabs/calendar-tabs.component';
-import { DetailsMenuComponent } from './details-menu/details-menu.component';
+import { CalendarTabsComponent } from './Components/calendar-tabs/calendar-tabs.component';
+import { DetailsMenuComponent } from './Components/details-menu/details-menu.component';
 import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
