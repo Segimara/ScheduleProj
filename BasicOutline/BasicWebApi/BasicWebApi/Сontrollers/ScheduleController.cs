@@ -42,7 +42,7 @@ namespace BasicWebApi.Controllers
 		/// <param name="From"></param>
 		/// <param name="To"></param>
 		/// <returns></returns>
-		[HttpGet("{From} {To}")]
+		[HttpGet("{From},{To}")]
 		public async Task<ActionResult<EventListVM>> GetList(DateTime From, DateTime To)
 		{
 			var request = new GetEventListQuery
@@ -53,12 +53,12 @@ namespace BasicWebApi.Controllers
 			};
 			return await Mediator.Send(request);
 		}
-		/// <summary>
-		/// Create an event
-		/// </summary>
-		/// <param name="dto"></param>
-		/// <returns></returns>
-		[HttpPost]
+        /// <summary>
+        /// Create an event
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPost]
 		public async Task<ActionResult<EventModel>> Create([FromBody] CreateEventDto dto)
 		{
 			var request = _mapper.Map<CreateEventCommand>(dto);
