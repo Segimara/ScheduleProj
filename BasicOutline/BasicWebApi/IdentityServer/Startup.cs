@@ -19,8 +19,8 @@ namespace IdentityServer
 			var connectionString = Config.GetValue<string>("DbConnection");
 			services.AddDbContext<AuthDBContext>(options =>
 			options.UseSqlite(connectionString));
-			services.AddDbContext<ConfigurationDBContext>(opt =>
-			opt.UseSqlite(connectionString));
+			//services.AddDbContext<ConfigurationDBContext>(opt =>
+			//opt.UseSqlite(connectionString));
 			services.AddIdentity<AppUser, IdentityRole>(config =>
 			{
 				config.Password.RequiredLength = 4;

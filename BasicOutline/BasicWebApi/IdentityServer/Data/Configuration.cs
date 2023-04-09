@@ -37,7 +37,7 @@ namespace ToDoTask.Identity
                     RequirePkce = true,
                     RedirectUris =
                     {
-                        "https://localhost:7001/oauth2-redirect.html"
+                        "https://localhost:7001/swagger/oauth2-redirect.html"
                     },
                     AllowedCorsOrigins =
                     {

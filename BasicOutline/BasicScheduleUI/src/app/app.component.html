@@ -14,7 +14,7 @@
     </mat-drawer-content>
   
     <mat-drawer #drawer mode="side">
-      <mat-nav-list>
+      <mat-nav-list *ngIf="isLoggedIn()">
         <a mat-list-item routerLink="/home">Home</a>
         <a mat-list-item routerLink="/about">About</a>
         <a mat-list-item routerLink="/contact">Contact</a>

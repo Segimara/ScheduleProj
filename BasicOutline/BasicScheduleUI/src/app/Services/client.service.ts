@@ -1,6 +1,5 @@
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
 import { Observable, throwError as _observableThrow, of as _observableOf } from 'rxjs';
-import { Injectable, Inject, Optional } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { ClientBase } from '../Utility/clientBase';
 import { ApiException } from 'src/Models/Exceptions/ApiException';
@@ -11,6 +10,7 @@ import { EventListVM } from 'src/Models/ViewModels/EventListVM';
 import { EventModel } from 'src/Models/ViewModels/EventModel';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { C } from '@fullcalendar/core/internal-common';
+import { Inject, Injectable } from '@angular/core';
 
 const oAuthConfig = {
     issuer: 'https://localhost:7000',
@@ -58,6 +58,14 @@ export class ClientService {
         this.oAuthService.logOut();
     }
 
+    getHeaders(): HttpHeaders {
+        return new HttpHeaders({
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Bearer": this.oAuthService.getAccessToken(),
+        });
+    }
+
     /**
      * @return Success
      */
@@ -72,9 +80,7 @@ export class ClientService {
             observe: "response",
             responseType: "blob",
             withCredentials: true,
-            headers: new HttpHeaders({
-                "Accept": "application/json"
-            })
+            headers: this.getHeaders()
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
@@ -127,9 +133,7 @@ export class ClientService {
             observe: "response",
             responseType: "blob",
             withCredentials: true,
-            headers: new HttpHeaders({
-                "Accept": "application/json"
-            })
+            headers: this.getHeaders()
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
@@ -185,10 +189,7 @@ export class ClientService {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
-            withCredentials: true,
-            headers: new HttpHeaders({
-                "Accept": "application/json"
-            })
+            headers: this.getHeaders()
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
@@ -242,10 +243,7 @@ export class ClientService {
             observe: "response",
             responseType: "blob",
             withCredentials: true,
-            headers: new HttpHeaders({
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            })
+            headers: this.getHeaders()
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
@@ -299,10 +297,7 @@ export class ClientService {
             observe: "response",
             responseType: "blob",
             withCredentials: true,
-            headers: new HttpHeaders({
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            })
+            headers: this.getHeaders()
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
