@@ -22,13 +22,15 @@ namespace BasicWebApi.Core.App.Event.Queries.GetLIst
 		{
 			var _events = await _dbContext.Events
 				.Where(x => x.UserId == request.UserId &&
-				(x.DateTimeStart <= request.To && x.DateTimeStart >= request.From))
+				(x.Start <= request.To && x.Start >= request.From))
 				.ProjectTo<EventListDTO>(_mapper.ConfigurationProvider)
 				.ToListAsync(cancellationToken);
 			if (_events == null || !_events.Any())
 			{
-				throw new NotFoundException(nameof(EventListVM), request.UserId);
-			}
+                //throw new NotFoundException(nameof(EventListVM), request.UserId);
+                _events = Enumerable.Empty<EventListDTO>().ToList();
+
+            }
 			return new EventListVM
 			{
 				listDTOs = _events

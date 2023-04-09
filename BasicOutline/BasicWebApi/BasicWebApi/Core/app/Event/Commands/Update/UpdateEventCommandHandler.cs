@@ -25,8 +25,8 @@ namespace BasicWebApi.Core.App.Event.Commands.Update
 			_event.Title = request.Title;
 			_event.Description = request.Description;
 			_event.Priotity = request.Priotity;
-			_event.DateTimeStart = request.DateTimeStart;
-			_event.DateTimeEnd = request.DateTimeEnd;
+			_event.Start = request.Start;
+			_event.End = request.End;
 			_event.State = Domain.Enums.State.Modified;
 			_event.Timestamp = DateTime.UtcNow;
 

@@ -3,6 +3,7 @@ using IdentityServer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
+using ToDoTask.Identity;
 
 namespace IdentityServer
 {
@@ -32,12 +33,16 @@ namespace IdentityServer
 			.AddDefaultTokenProviders();
 			services.AddIdentityServer()
 				.AddAspNetIdentity<AppUser>()
-				.AddConfigurationStore<ConfigurationDBContext>(options =>
-				{
-					options.ConfigureDbContext = builder =>
-						builder.UseSqlite(connectionString);
-				})
-				.AddDeveloperSigningCredential();
+				//.AddConfigurationStore<ConfigurationDBContext>(options =>
+				//{
+				//	options.ConfigureDbContext = builder =>
+				//		builder.UseSqlite(connectionString);
+				//})
+                .AddInMemoryApiResources(Configuration.ApiResources)
+				.AddInMemoryClients(Configuration.Clients)
+				.AddInMemoryIdentityResources(Configuration.IdentityResources)
+				.AddInMemoryApiScopes(Configuration.ApiScopes)
+                .AddDeveloperSigningCredential();
 			services.ConfigureApplicationCookie(options =>
 			{
 				options.Cookie.Name = "Shop.Identity.Cookie";
@@ -45,7 +50,17 @@ namespace IdentityServer
 				options.LogoutPath = "/Auth/Logout";
 			});
 
-			services.AddControllersWithViews();
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyOrigin();
+                });
+            });
+
+            services.AddControllersWithViews();
 		}
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
@@ -60,7 +75,8 @@ namespace IdentityServer
 				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 				app.UseHsts();
 			}
-			app.UseHttpsRedirection();
+            app.UseCors("AllowAll");
+            app.UseHttpsRedirection();
 			app.UseStaticFiles();
 			app.UseRouting();
 			app.UseIdentityServer();

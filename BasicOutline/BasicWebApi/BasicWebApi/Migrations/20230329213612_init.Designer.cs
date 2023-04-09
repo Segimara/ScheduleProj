@@ -26,10 +26,10 @@ namespace BasicWebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateTimeEnd")
+                    b.Property<DateTime>("End")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateTimeStart")
+                    b.Property<DateTime>("Start")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")

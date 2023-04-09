@@ -20,8 +20,8 @@ namespace BasicWebApi.Core.App.Event.Commands.Create
 				Title = request.Title,
 				Description = request.Description,
 				Priotity = request.Priotity,
-				DateTimeStart = request.DateTimeStart,
-				DateTimeEnd = request.DateTimeEnd,
+				Start = request.Start,
+				End = request.End,
 				State = Domain.Enums.State.Added,
 				Timestamp = DateTime.UtcNow,
 			};

@@ -22,8 +22,8 @@ namespace BasicWebApi.Migrations
                     Priotity = table.Column<int>(type: "INTEGER", nullable: false),
                     Timestamp = table.Column<DateTime>(type: "TEXT", nullable: false),
                     State = table.Column<int>(type: "INTEGER", nullable: false),
-                    DateTimeStart = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    DateTimeEnd = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Start = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    End = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

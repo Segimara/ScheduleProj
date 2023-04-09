@@ -21,16 +21,6 @@ namespace IdentityServer.Data
         private static void AuthContextInit(AuthDBContext context, IServiceProvider serviceProvider)
         {
             var userManager = serviceProvider.GetService<UserManager<AppUser>>();
-
-            var user = new AppUser
-            {
-                UserName = "123qwe", // add admin account and superUser  Account
-            };
-            var result = userManager.CreateAsync(user, "123qwe").GetAwaiter().GetResult();
-            if (result.Succeeded)
-            {
-                //userManager.AddClaimAsync(user, new Claim)
-            }
         }
         private static async void ConfigurationContextInit(ConfigurationDBContext configContext)
         {

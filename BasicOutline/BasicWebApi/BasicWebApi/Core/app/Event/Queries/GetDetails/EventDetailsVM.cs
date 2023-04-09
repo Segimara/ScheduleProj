@@ -14,8 +14,8 @@ namespace BasicWebApi.Core.App.Event.Queries.GetDetails
 		public string Title { get; set; }
 		public string Description { get; set; }
 		public int Priotity { get; set; }
-		public DateTime DateTimeStart { get; set; }
-		public DateTime DateTimeEnd { get; set; }
+		public DateTime Start { get; set; }
+		public DateTime End { get; set; }
 		//public List<ImageModel> Images { get; set; }
 		public void Mapping(Profile profile)
 		{

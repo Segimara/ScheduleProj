@@ -51,6 +51,29 @@ namespace ToDoTask.Identity
                     },
                     AllowAccessTokensViaBrowser = true
                 },
+                new Client
+                {
+                    ClientId = "AngularBasicUI",
+                    ClientName = "Angular Basic UI",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    RequireClientSecret = false,
+                    RequirePkce = true,
+                    RedirectUris =
+                    {
+                        "http://localhost:4200"
+                    },
+                    AllowedCorsOrigins =
+                    {
+                        "http://localhost:4200"
+                    },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "ScheduleWebApi"
+                    },
+                    AllowAccessTokensViaBrowser = true
+                },
             };
 
     }
