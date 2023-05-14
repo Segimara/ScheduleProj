@@ -1,29 +1,29 @@
 .content {
   height: 100vh;
 }
-.drawer-content
-{
+
+.drawer-content {
   padding: 15px;
   width: 100%;
   position: relative;
   display: flex;
   flex-direction: row;
 }
+
 .drawer-container {
   height: calc(100% - 64px);
   display: flex;
   flex-direction: row;
   gap: 15px;
 }
-.calendar-tabs
-{
+
+.calendar-tabs {
   width: calc(100% - 15px);
   height: calc(100% - 15px);
   flex: 3.5;
 }
-.details-menu
-{
-  padding-left: 15px;
+
+.details-menu {
   width: 100%;
   height: 100%;
   flex: 1;

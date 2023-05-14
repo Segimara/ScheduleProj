@@ -1,14 +1,13 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from "@fullcalendar/core";
-import { MatDialog } from '@angular/material/dialog';
+import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
-import { ClientService } from "src/app/Services/client.service";
 import allLocales from '@fullcalendar/core/locales-all';
-import { EventListVM } from "src/Models/ViewModels/EventListVM";
-import { CreateEventDto } from "src/Models/RequestDtos/CreateEventDto";
+import listPlugin from '@fullcalendar/list';
+import { ClientService } from "src/app/Services/Client.service";
+import { CreateEventDto } from "src/app/Models/RequestDtos/CreateEventDto";
+
 //todo add pop ups for creating updation and view of events by click 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -47,15 +46,15 @@ export class CalendarTabsComponent implements OnInit {
       eventsSet: this.handleEvents.bind(this)
     };
     this.calendarOptions.events = function (info, successCallback, failureCallback) {
-      webApiClient.getList(info.start, info.end).subscribe((data: EventListVM) => {
-        if (data.listDTOs == undefined || data.listDTOs == null) {
-          failureCallback(new Error("No events found"));
-        }
-        else {
-          successCallback(data.listDTOs);
-        }
-      });
-      webApiClient.getList(info.start, info.end)
+      //webApiClient.getList(info.start, info.end).subscribe((data: EventListVM) => {
+      //  if (data.listDTOs == undefined || data.listDTOs == null) {
+      //    failureCallback(new Error("No events found"));
+      //  }
+      //  else {
+      //    successCallback(data.listDTOs);
+      //  }
+      //});
+      //webApiClient.getList(info.start, info.end)
     };
   }
 
@@ -77,9 +76,9 @@ export class CalendarTabsComponent implements OnInit {
         start: selectInfo.start,
         end: selectInfo.end
       });
-      this.webApiClient.create(obj).subscribe((data: EventListVM) => {
-        calendarApi.addEvent(data);
-      });
+      //this.webApiClient.create(obj).subscribe((data: EventListVM) => {
+      //  calendarApi.addEvent(data);
+      //});
     }
   }
 

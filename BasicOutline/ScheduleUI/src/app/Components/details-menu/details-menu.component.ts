@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClientService } from 'src/app/Services/client.service';
+import { ClientService } from 'src/app/Services/Client.service';
 
 @Component({
   selector: 'app-details-menu',
@@ -12,8 +12,8 @@ export class DetailsMenuComponent {
 
   }
   fetchEvents() {
-    this.webApiClient.getList(new Date(), new Date()).subscribe(data => {
-        console.log(data);
-      });
+    this.webApiClient.getEventList(new Date(), new Date()).subscribe((data) => {
+      console.log(data);
+    });
   }
 }
