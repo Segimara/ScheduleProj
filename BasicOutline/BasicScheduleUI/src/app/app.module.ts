@@ -16,6 +16,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { EventDetailsComponent } from './Components/event-details/event-details.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     MatIconModule,
     MatButtonModule,
     MatSlideToggleModule,
+    MatDialogModule,
     FullCalendarModule,
     OAuthModule.forRoot(),
   ],

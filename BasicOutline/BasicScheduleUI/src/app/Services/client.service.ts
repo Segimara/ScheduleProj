@@ -280,8 +280,8 @@ export class ClientService {
      * @param body (optional) 
      * @return Success
      */
-    update(body: UpdateEventDto | undefined): Observable<EventModel> {
-        let url_ = this.baseUrl + "/api/Schedule";
+    update(id: string ,body: UpdateEventDto | undefined): Observable<EventModel> {
+        let url_ = this.baseUrl + `/api/Schedule/${id}`;
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);

@@ -9,6 +9,8 @@ import { ClientService } from "src/app/Services/client.service";
 import allLocales from '@fullcalendar/core/locales-all';
 import { EventListVM } from "src/Models/ViewModels/EventListVM";
 import { CreateEventDto } from "src/Models/RequestDtos/CreateEventDto";
+import { UpdateEventDto } from "src/Models/RequestDtos/UpdateEventDto";
+import { EventDetailsComponent } from "../event-details/event-details.component";
 //todo add pop ups for creating updation and view of events by click 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -21,7 +23,8 @@ export class CalendarTabsComponent implements OnInit {
   calendarOptions: CalendarOptions;
 
   constructor(private changeDetector: ChangeDetectorRef,
-    private webApiClient: ClientService) {
+    private webApiClient: ClientService,
+    public dialog: MatDialog) {
     this.calendarOptions = {
       plugins: [
         interactionPlugin,
@@ -44,7 +47,8 @@ export class CalendarTabsComponent implements OnInit {
       dayMaxEvents: true,
       select: this.handleDateSelect.bind(this),
       eventClick: this.handleEventClick.bind(this),
-      eventsSet: this.handleEvents.bind(this)
+      eventsSet: this.handleEvents.bind(this),
+      eventDrop: this.handleEventDrop.bind(this),
     };
     this.calendarOptions.events = function (info, successCallback, failureCallback) {
       webApiClient.getList(info.start, info.end).subscribe((data: EventListVM) => {
@@ -84,14 +88,33 @@ export class CalendarTabsComponent implements OnInit {
   }
 
   handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove();
-    }
+    this.dialog.open(EventDetailsComponent, {
+      data: { id: clickInfo.event.id }
+    });
+    //if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+    //  clickInfo.event.remove();
+    //}
   }
 
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
     this.changeDetector.detectChanges();
   }
+
+  handleEventDrop(eventDropInfo: any) {
+    let obj = new UpdateEventDto();
+    obj.title = eventDropInfo.event.title;
+    obj.description = eventDropInfo.event.extendedProps.description;
+    obj.priotity = eventDropInfo.event.extendedProps.priotity;
+    obj.start = eventDropInfo.event.start;
+    obj.end = eventDropInfo.event.end;
+
+    this.webApiClient.update(eventDropInfo.event.id, obj).subscribe({
+      next: (data: EventListVM) => { },
+      error: (error) => { eventDropInfo.revert() }
+    });
+  }
+
+
 }
 
