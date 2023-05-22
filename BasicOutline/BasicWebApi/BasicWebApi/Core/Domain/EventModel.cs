@@ -1,5 +1,4 @@
 ﻿using BasicWebApi.Core.Domain.Enums;
-using Microsoft.EntityFrameworkCore;
 
 namespace BasicWebApi.Core.Domain
 {
@@ -9,7 +8,7 @@ namespace BasicWebApi.Core.Domain
         public Guid UserId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Priotity { get; set; }
+        public int Priority { get; set; }
         public DateTime Timestamp { get; set; }
         public State State { get; set; }
         public DateTime Start { get; set; }

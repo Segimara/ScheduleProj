@@ -30,8 +30,9 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "@angular/material/prebuilt-themes/deeppurple-amber.css"
             ],
             "scripts": []
           },

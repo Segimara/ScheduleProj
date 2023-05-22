@@ -3,7 +3,7 @@ export class EventDetailsVM implements IEventDetailsVM {
     userId?: string;
     title?: string | undefined;
     description?: string | undefined;
-    priotity?: number;
+    priority?: number;
     start?: Date;
     end?: Date;
 
@@ -22,7 +22,7 @@ export class EventDetailsVM implements IEventDetailsVM {
             this.userId = _data["userId"];
             this.title = _data["title"];
             this.description = _data["description"];
-            this.priotity = _data["priotity"];
+            this.priority = _data["priority"];
             this.start = _data["start"] ? new Date(_data["start"].toString()) : <any>undefined;
             this.end = _data["end"] ? new Date(_data["end"].toString()) : <any>undefined;
         }
@@ -41,7 +41,7 @@ export class EventDetailsVM implements IEventDetailsVM {
         data["userId"] = this.userId;
         data["title"] = this.title;
         data["description"] = this.description;
-        data["priotity"] = this.priotity;
+        data["priority"] = this.priority;
         data["start"] = this.start ? this.start.toISOString() : <any>undefined;
         data["end"] = this.end ? this.end.toISOString() : <any>undefined;
         return data;
@@ -53,7 +53,7 @@ export interface IEventDetailsVM {
     userId?: string;
     title?: string | undefined;
     description?: string | undefined;
-    priotity?: number;
+    priority?: number;
     start?: Date;
     end?: Date;
 }

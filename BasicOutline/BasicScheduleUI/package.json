@@ -29,6 +29,7 @@
     "@fullcalendar/timegrid": "^6.1.5",
     "angular-oauth2-oidc": "^15.0.1",
     "axios": "^1.4.0",
+    "bootstrap": "^5.2.3",
     "dhtmlx-scheduler": "^6.0.3",
     "ngx-markdown": "^15.1.2",
     "oidc-client": "^1.11.5",

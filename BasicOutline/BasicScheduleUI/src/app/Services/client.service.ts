@@ -127,7 +127,6 @@ export class ClientService {
         let options_: any = {
             observe: "response",
             responseType: "blob",
-            withCredentials: true,
             headers: this.getHeaders()
         };
 

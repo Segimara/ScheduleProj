@@ -36,7 +36,7 @@ namespace BasicWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Priotity")
+                    b.Property<int>("Priority")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("State")

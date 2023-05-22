@@ -3,7 +3,7 @@ export class EventModel implements IEventModel {
   userId?: string;
   title?: string | undefined;
   description?: string | undefined;
-  priotity?: number;
+  priority?: number;
   timestamp?: Date;
   state?: State;
   start?: Date;
@@ -24,7 +24,7 @@ export class EventModel implements IEventModel {
       this.userId = _data["userId"];
       this.title = _data["title"];
       this.description = _data["description"];
-      this.priotity = _data["priotity"];
+      this.priority = _data["priority"];
       this.timestamp = _data["timestamp"] ? new Date(_data["timestamp"].toString()) : <any>undefined;
       this.state = _data["state"];
       this.start = _data["start"] ? new Date(_data["start"].toString()) : <any>undefined;
@@ -45,7 +45,7 @@ export class EventModel implements IEventModel {
     data["userId"] = this.userId;
     data["title"] = this.title;
     data["description"] = this.description;
-    data["priotity"] = this.priotity;
+    data["priority"] = this.priority;
     data["timestamp"] = this.timestamp ? this.timestamp.toISOString() : <any>undefined;
     data["state"] = this.state;
     data["start"] = this.start ? this.start.toISOString() : <any>undefined;
@@ -59,7 +59,7 @@ export interface IEventModel {
   userId?: string;
   title?: string | undefined;
   description?: string | undefined;
-  priotity?: number;
+  priority?: number;
   timestamp?: Date;
   state?: State;
   start?: Date;

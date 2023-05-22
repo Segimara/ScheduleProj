@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
-import { CalendarOptions, DateSelectArg, EventApi, EventClickArg } from "@fullcalendar/core";
+import { CalendarOptions, DateSelectArg, EventApi, EventClickArg, EventRemoveArg } from "@fullcalendar/core";
 import { MatDialog } from '@angular/material/dialog';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -45,10 +45,12 @@ export class CalendarTabsComponent implements OnInit {
       selectable: true,
       selectMirror: true,
       dayMaxEvents: true,
+      eventRemove: this.handleEventRemove.bind(this),
       select: this.handleDateSelect.bind(this),
       eventClick: this.handleEventClick.bind(this),
       eventsSet: this.handleEvents.bind(this),
-      eventDrop: this.handleEventDrop.bind(this),
+      eventDrop: this.handleEventDropOrResize.bind(this),
+      //eventResize: this.handleEventDropOrResize.bind(this),
     };
     this.calendarOptions.events = function (info, successCallback, failureCallback) {
       webApiClient.getList(info.start, info.end).subscribe((data: EventListVM) => {
@@ -56,10 +58,10 @@ export class CalendarTabsComponent implements OnInit {
           failureCallback(new Error("No events found"));
         }
         else {
+          console.log(data.listDTOs);
           successCallback(data.listDTOs);
         }
       });
-      webApiClient.getList(info.start, info.end)
     };
   }
 
@@ -89,11 +91,10 @@ export class CalendarTabsComponent implements OnInit {
 
   handleEventClick(clickInfo: EventClickArg) {
     this.dialog.open(EventDetailsComponent, {
-      data: { id: clickInfo.event.id }
+      data: { id: clickInfo.event.id, eventImpl: clickInfo.event },
+      width: '90vmin',
+      height: '90vmin',
     });
-    //if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-    //  clickInfo.event.remove();
-    //}
   }
 
   handleEvents(events: EventApi[]) {
@@ -101,20 +102,27 @@ export class CalendarTabsComponent implements OnInit {
     this.changeDetector.detectChanges();
   }
 
-  handleEventDrop(eventDropInfo: any) {
+  handleEventDropOrResize(eventInfo: any) {
+    console.log(eventInfo);
     let obj = new UpdateEventDto();
-    obj.title = eventDropInfo.event.title;
-    obj.description = eventDropInfo.event.extendedProps.description;
-    obj.priotity = eventDropInfo.event.extendedProps.priotity;
-    obj.start = eventDropInfo.event.start;
-    obj.end = eventDropInfo.event.end;
+    obj.title = eventInfo.event.title;
+    obj.description = eventInfo.event.extendedProps.description;
+    obj.priority = eventInfo.event.extendedProps.priority;
+    obj.start = eventInfo.event.start;
+    obj.end = eventInfo.event.end;
 
-    this.webApiClient.update(eventDropInfo.event.id, obj).subscribe({
+    this.webApiClient.update(eventInfo.event.id, obj).subscribe({
       next: (data: EventListVM) => { },
-      error: (error) => { eventDropInfo.revert() }
+      error: (error) => { eventInfo.revert() }
     });
   }
 
+  handleEventRemove(eventInfo: EventRemoveArg) {
+    this.webApiClient.delete(eventInfo.event.id).subscribe({
+      next: (data) => { },
+      error: (error) => { eventInfo.revert() }
+    });
+  }
 
 }
 

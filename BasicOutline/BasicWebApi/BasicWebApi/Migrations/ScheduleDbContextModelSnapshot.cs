@@ -30,7 +30,7 @@ namespace BasicWebApi.Migrations
                     b.Property<DateTime>("End")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Priotity")
+                    b.Property<int>("Priority")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Start")
