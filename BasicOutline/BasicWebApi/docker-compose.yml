@@ -1,0 +1,32 @@
+services:
+  api:
+    image: webapiaboba.api
+    build:
+      context: .
+      dockerfile: BasicWebApi/Dockerfile
+    ports:
+      - 7001:443
+      - 5066:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ~/.aspnet/https:/https:ro
+
+  auth:
+    image: authapiabiba.api
+    build:
+      context: .
+      dockerfile: IdentityServer/Dockerfile
+    ports:
+      - 7000:443
+      - 5067:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ~/.aspnet/https:/https:ro

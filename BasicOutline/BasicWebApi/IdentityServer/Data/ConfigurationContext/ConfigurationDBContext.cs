@@ -1,11 +1,6 @@
 ﻿using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IdentityServer.Data
 {
@@ -17,6 +12,9 @@ namespace IdentityServer.Data
         public DbSet<ApiResource> ApiResources { get; set; }
         public DbSet<ApiScope> ApiScopes { get; set; }
 
-        public ConfigurationDBContext(DbContextOptions<ConfigurationDBContext> options) : base(options) { }
+        public ConfigurationDBContext(DbContextOptions<ConfigurationDBContext> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
     }
 }

@@ -1,20 +1,15 @@
 ﻿using IdentityServer.Models;
 using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToDoTask.Identity;
 
 namespace IdentityServer.Data
 {
     public class DBInitializer
     {
-        public static void Initialize(AuthDBContext authContext, ConfigurationDBContext configContext, IServiceProvider serviceProvider)
+        public static void Initialize(AuthDBContext authContext, IServiceProvider serviceProvider)
         {
-            ConfigurationContextInit(configContext);
+            //ConfigurationContextInit(configContext);
             AuthContextInit(authContext, serviceProvider);
         }
 

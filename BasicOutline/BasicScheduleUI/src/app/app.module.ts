@@ -17,6 +17,12 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { EventDetailsComponent } from './Components/event-details/event-details.component';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateEventComponent } from './Components/create-event/create-event.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -24,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CalendarTabsComponent,
     DetailsMenuComponent,
     EventDetailsComponent,
+    CreateEventComponent,
   ],
   imports: [
     MarkdownModule.forRoot(),
@@ -40,6 +47,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     FullCalendarModule,
     OAuthModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,8 +6,8 @@
     <h1 class="display-1 py-0 px-3" mat-dialog-title><b>{{ eventDetails.title }}</b></h1>
 
     <div mat-dialog-actions>
-      <button mat-icon-button>
-        <mat-icon>create</mat-icon>
+      <button mat-icon-button (click) = 'openEditMenu()'>
+        <mat-icon >create</mat-icon>
       </button>
       <button mat-icon-button mat-dialog-close>
         <mat-icon>close</mat-icon>

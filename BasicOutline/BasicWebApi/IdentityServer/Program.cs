@@ -1,5 +1,4 @@
 using IdentityServer.Data;
-using Microsoft.AspNetCore.Hosting;
 
 namespace IdentityServer
 {
@@ -14,8 +13,7 @@ namespace IdentityServer
                 try
                 {
                     var authContext = services.GetRequiredService<AuthDBContext>();
-                    var configContext = services.GetRequiredService<ConfigurationDBContext>();
-                    DBInitializer.Initialize(authContext, configContext, scope.ServiceProvider);
+                    DBInitializer.Initialize(authContext, scope.ServiceProvider);
                 }
                 catch (Exception exception)
                 {

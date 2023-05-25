@@ -1,0 +1,49 @@
+<div class="w-100">
+  <form class="w-100" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <label for="id">ID:</label>
+      <input matInput type="text" id="id" formControlName="id">
+    </mat-form-field>
+    <mat-form-field>
+      <label for="userId">User ID:</label>
+      <input matInput type="text" id="userId" formControlName="userId">
+    </mat-form-field>
+    <mat-form-field>
+      <label for="title">Title:</label>
+      <input matInput type="text" id="title" formControlName="title">
+    </mat-form-field>
+    <mat-form-field>
+      <label for="description">Description:</label>
+      <input matInput type="text" id="description" formControlName="description">
+    </mat-form-field>
+    <mat-form-field>
+      <label for="priority">Priority:</label>
+      <input matInput type="number" id="priority" formControlName="priority">
+    </mat-form-field>
+    <div class="">
+      <div class="">
+        <mat-form-field>
+          <label for="start">Start:</label>
+          <input matInput type="time" class="bg-none" formControlName="start" placeholder="Time">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker" formControlName="start"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="">
+        <mat-form-field>
+          <input matInput type="time" class="bg-none" formControlName="start" placeholder="Time">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker" formControlName="start"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
