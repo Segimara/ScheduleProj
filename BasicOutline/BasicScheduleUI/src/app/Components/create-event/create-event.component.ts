@@ -1,4 +1,4 @@
-import { Component, Inject, NgModule, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, NgModule, NgZone, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ClientService } from 'src/app/Services/client.service';
@@ -6,6 +6,9 @@ import { EventImpl } from '@fullcalendar/core/internal';
 import { EventDetailsVM } from 'src/Models/ViewModels/EventDetailsVM';
 import { CommonModule } from '@angular/common';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { ViewEncapsulation } from '@angular/compiler';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-create-event',
@@ -15,28 +18,29 @@ import { MatDatepicker } from '@angular/material/datepicker';
 
 export class CreateEventComponent implements OnInit {
   form!: FormGroup;
-  startFormControl!: FormControl;
-  endFormControl!: FormControl;
+  start: FormControl;
+  end: FormControl;
 
-  @ViewChild('startPicker') startPicker!: MatDatepicker<Date>;
-  @ViewChild('endPicker') endPicker!: MatDatepicker<Date>;
-
+  preview = { description: "" }
 
   constructor(public dialogRef: MatDialogRef<CreateEventComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { event: EventDetailsVM, eventImpl: EventImpl },
+    private _ngZone: NgZone,
     private formBuilder: FormBuilder,
     private webApiClient: ClientService) {
-
-    this.startFormControl = new FormControl('');
-    this.endFormControl = new FormControl('');
+    this.start = new FormControl('');
+    this.end = new FormControl('');
     this.form = this.formBuilder.group({
       id: new FormControl(''),
       userId: new FormControl(''),
       title: new FormControl(''),
       description: new FormControl(''),
       priority: new FormControl(''),
-      start: new FormControl(''),
-      end: new FormControl('')
+      start: this.start,
+      end: this.end
+    });
+    this.form.controls['description'].valueChanges.pipe().subscribe((value: string) => {
+      this.preview.description = value;
     });
   }
 
@@ -63,5 +67,23 @@ export class CreateEventComponent implements OnInit {
 
   sendRequest(formData: EventDetailsVM) {
     console.log(formData);
+  }
+
+  deleteEvent() {
+    if (confirm("Are you sure you want to delete this event?")) {
+      this.data.eventImpl.remove();
+      this.dialogRef.close();
+    }
+  }
+  getTitle() {
+    return this.data.event.id == undefined ? "Create event" : "Edit event";
+  }
+
+  @ViewChild('autosize', {static: false}) autosize!: CdkTextareaAutosize;
+
+  triggerResize() {
+    // Wait for changes to be applied, then trigger textarea resize.
+    this._ngZone.onStable.pipe(take(1))
+        .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 }
