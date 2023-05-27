@@ -1,6 +1,6 @@
 <div class="w-100 h-100 p-1 d-flex flex-column justify-content-between mh-100">
   <div class="d-flex flex-row justify-content-between align-items-center">
-    <h1 class="display-1 py-0 px-3" mat-dialog-title><b>Create Event</b></h1>
+    <h1 class="display-1 py-0 px-3" mat-dialog-title><b>{{getTitle()}}</b></h1>
 
     <div mat-dialog-actions>
       <button mat-icon-button mat-dialog-close>
@@ -8,8 +8,7 @@
       </button>
     </div>
   </div>
-  <form class="w-100 h-100 px-3 py-2 overflow-auto d-flex flex-column align-items-center" [formGroup]="form"
-    (ngSubmit)="onSubmit()">
+  <form class="w-100 h-100 px-3 py-2 overflow-auto d-flex flex-column align-items-center" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="">
       <mat-form-field class="">
         <mat-label>Title</mat-label>
@@ -25,29 +24,33 @@
     <div class="d-flex justify-content-center flex-wrap">
       <div class="mx-2">
         <mat-form-field>
-          <mat-label>Start date</mat-label>
-          <input matInput [ngxMatDatetimePicker]="picker" placeholder="Start date" [formControl]="start">
-          <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-          <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true" [touchUi]="true">
-          </ngx-mat-datetime-picker>
-        </mat-form-field>
+            <mat-label>Start date</mat-label>
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Start date" [formControl]="start">
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true"
+               [touchUi]="true"  >
+            </ngx-mat-datetime-picker>
+         </mat-form-field>
       </div>
-      <div class="mx-2">
+      <div class="mx-2" >
         <mat-form-field>
           <mat-label>End date</mat-label>
           <input matInput [ngxMatDatetimePicker]="picker" placeholder="Start date" [formControl]="end">
-          <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-          <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true" [touchUi]="true">
-          </ngx-mat-datetime-picker>
-        </mat-form-field>
+            <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="true"
+               [touchUi]="true"  >
+            </ngx-mat-datetime-picker>
+         </mat-form-field>
       </div>
     </div>
 
     <div class="row w-100 overflow-hiden h-100">
       <mat-form-field class="col w-100">
         <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
-          cdkAutosizeMinRows="5"></textarea>
+        <textarea matInput formControlName="description"
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="5"></textarea>
       </mat-form-field>
       <div class="col w-100">
         <markdown [data]="preview.description"></markdown>
@@ -56,8 +59,8 @@
   </form>
 
   <div mat-dialog-actions class="d-flex flex-row justify-content-between">
-    <button mat-icon-button (click)="dialogRef.close()">
-      <mat-icon>cancel</mat-icon>
+    <button mat-icon-button (click)="deleteEvent()">
+      <mat-icon>delete</mat-icon>
     </button>
     <button mat-icon-button (click)="onSubmit()">
       <mat-icon>done</mat-icon>

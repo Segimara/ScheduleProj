@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dial
 import { EventImpl } from '@fullcalendar/core/internal';
 import { EventDetailsVM } from 'src/Models/ViewModels/EventDetailsVM';
 import { ClientService } from 'src/app/Services/client.service';
-import { CreateEventComponent } from '../create-event/create-event.component';
+import { EditEventComponent } from '../edit-event/edit-event.component';
 
 @Component({
   selector: 'app-event-details',
@@ -32,7 +32,7 @@ export class EventDetailsComponent {
   }
 
   openEditMenu() {
-    this.dialog.open(CreateEventComponent, {
+    this.dialog.open(EditEventComponent, {
       data: {
         event: this.eventDetails,
         eventImpl: this.data.eventImpl

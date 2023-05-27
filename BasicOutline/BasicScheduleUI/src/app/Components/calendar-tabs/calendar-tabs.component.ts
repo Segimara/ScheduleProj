@@ -11,6 +11,7 @@ import { EventListVM } from "src/Models/ViewModels/EventListVM";
 import { CreateEventDto } from "src/Models/RequestDtos/CreateEventDto";
 import { UpdateEventDto } from "src/Models/RequestDtos/UpdateEventDto";
 import { EventDetailsComponent } from "../event-details/event-details.component";
+import { CreateEventComponent } from "../create-event/create-event.component";
 //todo add pop ups for creating updation and view of events by click 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -72,21 +73,15 @@ export class CalendarTabsComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('Please enter a new title for your event');
-    const calendarApi = selectInfo.view.calendar;
-    calendarApi.unselect(); // clear date selection
-    if (title) {
-      let obj = new CreateEventDto({
-        title: title,
-        description: "",
-        priotity: 1,
+    this.dialog.open(CreateEventComponent, {
+      data: {
         start: selectInfo.start,
-        end: selectInfo.end
-      });
-      this.webApiClient.create(obj).subscribe((data: EventListVM) => {
-        calendarApi.addEvent(data);
-      });
-    }
+        end: selectInfo.end,
+        calendarApi: selectInfo.view.calendar
+      },
+      width: '90vmin',
+      height: '90vmin',
+    });
   }
 
   handleEventClick(clickInfo: EventClickArg) {

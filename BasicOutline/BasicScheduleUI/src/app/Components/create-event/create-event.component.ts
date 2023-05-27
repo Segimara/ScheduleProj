@@ -1,38 +1,37 @@
-import { Component, Inject, NgModule, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, NgZone, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ClientService } from 'src/app/Services/client.service';
 import { EventImpl } from '@fullcalendar/core/internal';
 import { EventDetailsVM } from 'src/Models/ViewModels/EventDetailsVM';
-import { CommonModule } from '@angular/common';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { ViewEncapsulation } from '@angular/compiler';
+import { ClientService } from 'src/app/Services/client.service';
+import { EditEventComponent } from '../edit-event/edit-event.component';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from 'rxjs';
+import { CreateEventDto } from 'src/Models/RequestDtos/CreateEventDto';
+import { CalendarApi } from '@fullcalendar/core';
 
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.scss']
 })
-
-export class CreateEventComponent implements OnInit {
+export class CreateEventComponent {
   form!: FormGroup;
   start: FormControl;
   end: FormControl;
 
   preview = { description: "" }
 
+ // todo need add validation for form
   constructor(public dialogRef: MatDialogRef<CreateEventComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { event: EventDetailsVM, eventImpl: EventImpl },
+    @Inject(MAT_DIALOG_DATA) public data: { start: Date, end: Date, calendarApi: CalendarApi},
     private _ngZone: NgZone,
     private formBuilder: FormBuilder,
     private webApiClient: ClientService) {
     this.start = new FormControl('');
     this.end = new FormControl('');
+    
     this.form = this.formBuilder.group({
-      id: new FormControl(''),
-      userId: new FormControl(''),
       title: new FormControl(''),
       description: new FormControl(''),
       priority: new FormControl(''),
@@ -45,45 +44,22 @@ export class CreateEventComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form.setValue(this.data.event);
+    this.form.patchValue({start: this.data.start, end: this.data.end});
   }
 
   onSubmit() {
-    const formData: EventDetailsVM = { ...this.form.value };
-    if (this.isFormChanged(formData)) {
-      this.sendRequest(formData);
-    }
-    this.dialogRef.close();
-  }
-
-  isFormChanged(formData: any): boolean {
-    for (const key in formData) {
-      if (formData.hasOwnProperty(key) && formData[key] !== (this.data.event as any)[key]) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  sendRequest(formData: EventDetailsVM) {
-    console.log(formData);
-  }
-
-  deleteEvent() {
-    if (confirm("Are you sure you want to delete this event?")) {
-      this.data.eventImpl.remove();
+    const formData: CreateEventDto = { ...this.form.value };
+    //send reqyest to webApiClient and close if success
+    this.webApiClient.create(formData).subscribe((result) => {
+      this.data.calendarApi.addEvent(result);
       this.dialogRef.close();
-    }
-  }
-  getTitle() {
-    return this.data.event.id == undefined ? "Create event" : "Edit event";
+    });
   }
 
-  @ViewChild('autosize', {static: false}) autosize!: CdkTextareaAutosize;
+  @ViewChild('autosize', { static: false }) autosize!: CdkTextareaAutosize;
 
   triggerResize() {
-    // Wait for changes to be applied, then trigger textarea resize.
     this._ngZone.onStable.pipe(take(1))
-        .subscribe(() => this.autosize.resizeToFitContent(true));
+      .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 }

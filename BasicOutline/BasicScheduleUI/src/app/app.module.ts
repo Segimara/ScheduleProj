@@ -18,6 +18,7 @@ import { EventDetailsComponent } from './Components/event-details/event-details.
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditEventComponent } from './Components/edit-event/edit-event.component';
 import { CreateEventComponent } from './Components/create-event/create-event.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,6 +38,7 @@ import {
     CalendarTabsComponent,
     DetailsMenuComponent,
     EventDetailsComponent,
+    EditEventComponent,
     CreateEventComponent,
   ],
   imports: [
