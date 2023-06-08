@@ -1,0 +1,26 @@
+<div class="content">
+  <mat-toolbar id="appToolbar" color="primary">
+    <button mat-icon-button class="example-icon" (click)="toggleDrawer()">
+      <mat-icon>settings</mat-icon>
+    </button>
+    <span>My App</span>
+  </mat-toolbar>
+  <mat-drawer-container class="drawer-container p-0">
+    <mat-drawer-content class="drawer-content">
+      <app-calendar-tabs class="calendar-tabs"></app-calendar-tabs>
+      <!--todo colapse on 1050px to right drawer-->
+      <!--fill component details-menu-->
+
+      <!--<app-details-menu class="details-menu"></app-details-menu>-->
+    </mat-drawer-content>
+
+    <mat-drawer #drawer mode="side">
+      <mat-nav-list *ngIf="isLoggedIn()">
+        <a mat-list-item routerLink="/home">Home</a>
+        <a mat-list-item routerLink="/about">About</a>
+        <a mat-list-item routerLink="/contact">Contact</a>
+        <div style="width: 100px; background-color: #000;"></div>
+      </mat-nav-list>
+    </mat-drawer>
+  </mat-drawer-container>
+</div>
