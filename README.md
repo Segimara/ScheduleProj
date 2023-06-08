@@ -24,3 +24,11 @@
 - install dependencies bu running `npm i` command
 - start frontend app by running `ng serve` 
 
+# Api doc
+
+The base object that is passed from the backend to the frontend of the application is shown in the picture below
+![Alt text](/doc%20imgs/image.png)
+You can find complete documentation on api endpoints and dtos when you start the backend server and go to 
+`https://localhost:7001/swagger/index.html`
+
+![Alt text](/doc%20imgs/image-1.png)
