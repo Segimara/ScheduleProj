@@ -44,12 +44,12 @@
     </div>
 
     <div class="row w-100 overflow-hiden h-100">
-      <mat-form-field class="col w-100">
+      <mat-form-field class="col-6 mw-100">
         <mat-label>Description</mat-label>
         <textarea matInput formControlName="description" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
           cdkAutosizeMinRows="5"></textarea>
       </mat-form-field>
-      <div class="col w-100">
+      <div class="col-6 mw-100">
         <markdown [data]="preview.description"></markdown>
       </div>
     </div>
