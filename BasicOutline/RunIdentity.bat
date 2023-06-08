@@ -1,6 +1,6 @@
 @echo off
 rem Change directory to BasicWebApi
-cd C:\Users\Segimara\Documents\GitHub\ScheduleProj\BasicOutline\BasicWebApi
+cd ./BasicWebApi/
 
 rem Open folder 
 cd IdentityServer
